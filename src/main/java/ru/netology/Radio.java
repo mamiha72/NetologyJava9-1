@@ -1,16 +1,14 @@
 package ru.netology;
 
 public class Radio {
-    private static int currentStation;
-    private static int currentVolume;
+    private int currentStation;
+    private int currentVolume;
 
-    public static int getCurrentStation() {
-
+    public int getCurrentStation() {
         return currentStation;
     }
 
-    public static int getCurrentVolume() {
-
+    public int getCurrentVolume() {
         return currentVolume;
     }
 
