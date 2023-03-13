@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class RadioTest {
 
-
     @ParameterizedTest
 
     //@CsvFileSource(files = "src/test/resources/stationset") File [src/test/resources/stationset] could not be read
@@ -35,10 +34,9 @@ public class RadioTest {
             "0,-1",
             "0,0",
             "1,1",
-            "5,5",
             "9,9",
-            "10,10",
-            "0,11"
+            "100,100",
+            "0,101"
     })
 
     public void volumeSetFullTest(int expected, int newValue) {
@@ -86,8 +84,8 @@ public class RadioTest {
     @ParameterizedTest
     @CsvSource({
             "6,5",
-            "9,8",
-            "9,9"
+            "100,99",
+            "100,100"
     })
     public void volumeUpFullTest(int expected, int upValue) {
         Radio volume = new Radio();
@@ -95,7 +93,6 @@ public class RadioTest {
 
         volume.volumeUp();
 
-        // int expected = 6;
         int actual = volume.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
     }
@@ -112,8 +109,23 @@ public class RadioTest {
 
         volume.volumeDown();
 
-        //int expected = 4;
         int actual = volume.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "10,10,20",
+            "19,19,20",
+            "0,20,20"
+    })
+
+    public void stationsCountTest(int expectedSetStation, int setStation, int setStationCount) {
+        Radio station = new Radio(setStationCount);
+
+        station.setCurrentStation(setStation);
+
+        int actual = station.getCurrentStation();
+        Assertions.assertEquals(expectedSetStation, actual);
     }
 }
